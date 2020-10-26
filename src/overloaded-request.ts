@@ -1,5 +1,3 @@
-import { allowedNodeEnvironmentFlags } from "process";
-
 type CreateRequest = {
     category: 'house' | 'car';
     area: number;
