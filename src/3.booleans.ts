@@ -1,3 +1,7 @@
+/*
+    This is verbose and very error prone.
+    Let's make it more data-oriented and declarative
+*/
 export function discounted(isBirthday: boolean, isStudent: boolean, isRegular: boolean): number {
     if (isBirthday && isStudent && isRegular) {
         return 0.45;

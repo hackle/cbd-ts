@@ -46,6 +46,9 @@ class DecisionMaker {
     }
 }
 
+/*
+    This is not bad but error prone, try to use "reduce" to make it safer 
+*/
 export function pipeline(): PurchaseApprovals {
     const purchase = initialApprovals;
     const decidedByTeamLead = new DecisionMaker(purchase, 'teamlead').decide();

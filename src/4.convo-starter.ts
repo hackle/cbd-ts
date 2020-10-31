@@ -10,6 +10,10 @@ type Person = {
     }
 };
 
+/*
+    What are the patterns of the implementation?
+    How would you express more succinctly the gathering of conversation starters?
+*/
 export function convoStarter(person: Person): string[] {
     let facts = [];
 

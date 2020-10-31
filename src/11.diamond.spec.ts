@@ -1,4 +1,4 @@
-import { diamond } from "./diamond";
+import { diamond } from "./11.diamond";
 
 describe('diamond', () => {
     [

@@ -1,4 +1,4 @@
-import { discounted } from "./booleans";
+import { discounted } from "./3.booleans";
 
 describe('discounted', () => {
     [

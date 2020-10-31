@@ -8,7 +8,10 @@ export type Scene = {
     action: Action,
 };
 
-// see if you can index by both action and place?
+/*
+    There are many ways to express and implement this efficiently.
+    Give it a go!
+*/
 export function explain(scene: Scene): string {
     if (scene.action === 'disagreement') {
         let disagreement: string;
