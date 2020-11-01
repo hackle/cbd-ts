@@ -1,10 +1,6 @@
-type CreateRequest = {
-    category: 'house' | 'car';
-    area: number;
-    address: string;
-    make: string;
-    model: string;
-};
+type Car = { category: 'car', make: string, model: string };
+type House = { category: 'house', area: number, address: string };
+type CreateRequest = Car | House;
 
 /*
     CreateRequest is "opaque" as it contains unnecessary information for each scenario.
@@ -20,8 +16,20 @@ export function handleRequest(request: CreateRequest): string {
     return undefined;
 }
 
-type Car = { make: string, model: string };
-type House = { area: number, }
-export function handleCar(car: Car): string {
+/*
+    Again tester-doer or map would do, this is a map
+*/
+export function handleRequest1(request: CreateRequest): string {
+    return {
+        'car': () => handleCar(request as Car),
+        'house': () => handleHouse(request as House)
+    }[request.category]();
+}
 
+function handleCar(car: Car): string {
+    return `Requested a ${car.make}-${car.model} car`;
+}
+
+function handleHouse(house: House): string {
+    return `Requested a house of ${house.area}sqm at ${house.address}`;
 }
