@@ -1,10 +1,10 @@
 // a chain of processors taking turn at one object
 
 type Role = 'teamlead' | 'manager' | 'GM' | 'CEO';
-type Decision = 'approved' | 'rejected';
-type PurchaseApprovals = Record<Role, Decision | undefined>;
+export type Decision = 'approved' | 'rejected';
+export type PurchaseApprovals = Record<Role, Decision | undefined>;
 
-const initialApprovals: PurchaseApprovals = {
+export const initialApprovals: PurchaseApprovals = {
     'CEO': undefined,
     'GM': undefined,
     'manager': undefined,
@@ -12,7 +12,11 @@ const initialApprovals: PurchaseApprovals = {
 };
 
 class DecisionMaker {
-    constructor(private purchase: PurchaseApprovals, private role: Role) {}
+    constructor(
+        private purchase: PurchaseApprovals, 
+        private role: Role,
+        private decider: () => Decision,
+    ) {}
 
     // check all roles approve of the purchase
     approvedBy(...roles: Role[]): boolean {
@@ -38,23 +42,25 @@ class DecisionMaker {
                 break;
         }
 
-        const decision: Decision = Math.random() > 0.5 ? 'rejected' : 'approved';
         return {
             ...this.purchase,
-            [this.role]: decision
+            [this.role]: this.decider()
         };
     }
 }
 
 /*
-    This is not bad but error prone, try to use "reduce" to make it safer 
+    This is not bad but error prone, try to use "reduce" to make it more solid 
 */
-export function pipeline(): PurchaseApprovals {
-    const purchase = initialApprovals;
-    const decidedByTeamLead = new DecisionMaker(purchase, 'teamlead').decide();
-    const decidedByManager = new DecisionMaker(decidedByTeamLead, 'manager').decide();
-    const decidedByGM = new DecisionMaker(decidedByManager, 'GM').decide();
-    const decidedByCEO = new DecisionMaker(decidedByGM, 'CEO').decide();
+export function pipeline(purchase: PurchaseApprovals, decider: () => Decision): PurchaseApprovals {
+    const decidedByTeamLead = new DecisionMaker(purchase, 'teamlead', decider).decide();
+    const decidedByManager = new DecisionMaker(decidedByTeamLead, 'manager', decider).decide();
+    const decidedByGM = new DecisionMaker(decidedByManager, 'GM', decider).decide();
+    const decidedByCEO = new DecisionMaker(decidedByGM, 'CEO', decider).decide();
 
     return decidedByCEO;
+}
+
+export function runPipeline() {
+    return pipeline(initialApprovals, () => Math.random() > 0.5 ? 'approved' : 'rejected');
 }

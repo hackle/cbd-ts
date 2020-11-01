@@ -1,11 +1,11 @@
-type Person = {
+export type Person = {
     name: string,
     referAs: 'he' | 'she',
     age: number,
     feelsAge: number,
     appearsAge: number,
     favourite: {
-        movie: 'frozen' | 'tenet' | 'god father',
+        movie: 'frozen' | 'tenet' | 'godfather',
         sport: 'swimming' | 'bowling' | 'mountain biking'
     }
 };

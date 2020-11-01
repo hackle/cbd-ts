@@ -6,6 +6,10 @@ type CreateRequest = {
     model: string;
 };
 
+/*
+    CreateRequest is "opaque" as it contains unnecessary information for each scenario.
+    Try to refactor it so each branch has only information that's required
+*/
 export function handleRequest(request: CreateRequest): string {
     if (request.category === 'car') {
         return `Requested a ${request.make}-${request.model} car`;

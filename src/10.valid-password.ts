@@ -1,6 +1,9 @@
 import { exit } from 'process';
 import { createInterface } from 'readline';
 
+/*
+    This is imperative - see if you can express it more succinctly
+*/
 async function getValidPassword() {
     let password: string;
     let isValid = false;
