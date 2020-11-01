@@ -18,10 +18,7 @@ describe('Pipeline', () => {
             purchase: initialApprovals,
             decider: () => 'rejected' as Decision,
             expected: <PurchaseApprovals>{
-                teamlead: 'rejected',
-                manager: 'rejected',
-                GM: 'rejected',
-                CEO: 'rejected'
+                teamlead: 'rejected'
             },
         }
     ].forEach(testcase => it(testcase.scenario, () => {
