@@ -35,15 +35,15 @@ export function matchResultNoAssign(myScore: number, opponentScore: number): str
     Given my score and opponent score, 
     the result must be one of the possibilities: a win, a loss or a tie
 */
-export function matchResultMap(myScore: number, opponentScore: number): string {
+export function matchResult1(myScore: number, opponentScore: number): string {
     return undefined;
 }
 
 /*
     Given my score and opponent score, 
-    and the methods Win, Loss and Tie are determined,
-    the result can be found by trying the methods until success
+    and the methods Win, Loss and Tie are calculated,
+    the result can be found by trying all methods until success
 */
-export function matchResultList(myScore: number, opponentScore: number): string {
+export function matchResult2(myScore: number, opponentScore: number): string {
     return undefined;
 }
