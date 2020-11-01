@@ -28,3 +28,5 @@ getValidPassword().then(p => {
 
     exit(0);
 });
+
+// to execute, run ts-node 10.valid-password.ts
