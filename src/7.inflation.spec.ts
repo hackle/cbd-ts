@@ -1,9 +1,5 @@
 import { inflatedAmount } from "./7.inflation";
 
-/*
-    See spec for problem statement
-    Presumed inflation rate is constant
-*/
 describe('Inflation', () => {
     it('Snowballs', () => {
         const annualIncome = [
