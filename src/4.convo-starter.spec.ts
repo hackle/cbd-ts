@@ -1,4 +1,4 @@
-import { convoStarter, Person } from "./4.convo-starter";
+import { convoStarter1 as convoStarter, Person } from "./4.convo-starter";
 
 describe('Convo starter', () => {
     [

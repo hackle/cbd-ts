@@ -64,3 +64,10 @@ export function pipeline(purchase: PurchaseApprovals, decider: () => Decision): 
 export function runPipeline() {
     return pipeline(initialApprovals, () => Math.random() > 0.5 ? 'approved' : 'rejected');
 }
+
+export function pipeline1(purchase: PurchaseApprovals, decider: () => Decision): PurchaseApprovals {
+    const roles: Role[] = [ 'teamlead', 'manager', 'GM', 'CEO' ];
+    return roles.reduce(
+            (prev, cur) => new DecisionMaker(prev, cur, decider).decide(), 
+            purchase);
+}

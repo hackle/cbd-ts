@@ -33,5 +33,7 @@ export function fullname1(
     middlename: string | undefined, 
     lastname: string | undefined
 ): string {
-    return '';
+    return [ firstname, middlename, lastname ]
+            .filter(n => (n ?? '') !== '')
+            .join(' ');
 }

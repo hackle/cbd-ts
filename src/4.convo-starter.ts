@@ -35,3 +35,29 @@ export function convoStarter(person: Person): string[] {
 
     return facts;
 }
+
+
+type FactMaker = { test: (person: Person) => boolean, make: (person: Person) => string };
+const factMakers: FactMaker[] = [
+    {
+        test: (person: Person) => person.age != person.feelsAge,
+        make: (person: Person) => `${person.name} is ${person.age}, but ${person.referAs} feels like ${person.feelsAge}`,
+    },
+    {
+        test: (person: Person) => person.age != person.appearsAge,
+        make: (person: Person) => `${person.name} is ${person.age}, but looks like ${person.referAs} is ${person.appearsAge}`,
+    },
+    {
+        test: (person: Person) => person.age > 80 && person.favourite.movie === 'frozen',
+        make: (person: Person) => `${person.name} is ${person.age} likes ${person.favourite.movie}, interesting!`
+    },
+    {
+        test: (person: Person) => person.age < 10 && person.favourite.sport === 'bowling',
+        make: (person: Person) => `${person.name} is only ${person.age} but already into ${person.favourite.sport}`
+    }
+];
+
+export function convoStarter1(person: Person): string[] {
+    return factMakers.filter(m => m.test(person))
+                    .map(m => m.make(person));
+}

@@ -28,7 +28,14 @@ export function matchResult(myScore: number, opponentScore: number): string {
     ...
 */
 export function matchResultNoAssign(myScore: number, opponentScore: number): string {
-    return undefined;
+    if (myScore > opponentScore) {
+        return 'Win';
+    }
+    
+    if (myScore < opponentScore) {
+        return 'Loss';
+    } 
+        return 'Tie';
 }
 
 /* 
@@ -36,7 +43,14 @@ export function matchResultNoAssign(myScore: number, opponentScore: number): str
     the result must be one of the possibilities: a win, a loss or a tie
 */
 export function matchResult1(myScore: number, opponentScore: number): string {
-    return undefined;
+    const scenarios = {
+        'Win': myScore > opponentScore,
+        'Loss': myScore < opponentScore,
+        'Tie': myScore == opponentScore,
+    };
+    return scenarios.Win ? 'Win' :
+            scenarios.Loss ? 'Loss' :
+            'Tie';
 }
 
 /*
@@ -45,5 +59,11 @@ export function matchResult1(myScore: number, opponentScore: number): string {
     the result can be found by trying all methods until success
 */
 export function matchResult2(myScore: number, opponentScore: number): string {
-    return undefined;
+    const possibilities = [
+        myScore > opponentScore ? 'Win' : null,
+        myScore < opponentScore ? 'Loss' : null,
+        'Tie'
+    ];
+
+    return possibilities.find(p => p != null);
 }

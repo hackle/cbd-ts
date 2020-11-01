@@ -5,5 +5,7 @@
     Tip: you'll need the reduce function
 */
 export function inflatedAmount(annualIncome: number[], inflationRate: number): number {
-    return 0;
+    return annualIncome
+            .reverse()
+            .reduce((tot, cur) => tot * (1 + inflationRate) + cur, 0);
 }

@@ -1,4 +1,4 @@
-import { Decision, initialApprovals, pipeline, PurchaseApprovals } from './8.pipeline';
+import { Decision, initialApprovals, pipeline1 as pipeline, PurchaseApprovals } from './8.pipeline';
 
 describe('Pipeline', () => {
     [

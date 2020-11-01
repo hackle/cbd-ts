@@ -1,4 +1,4 @@
-import { explain, Scene } from "./5.explain-scene";
+import { explain1 as explain, Scene } from "./5.explain-scene";
 
 describe('explain scene', () => {
     [

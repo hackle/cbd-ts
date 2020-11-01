@@ -1,4 +1,4 @@
-import { matchResult } from "./0.dangle";
+import { matchResult2 as matchResult } from "./0.dangle";
 
 describe('match result', () => {
     [

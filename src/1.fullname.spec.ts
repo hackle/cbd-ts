@@ -1,4 +1,4 @@
-import { fullname } from "./1.fullname";
+import { fullname1 as fullname } from "./1.fullname";
 
 describe('full name', () => {
     [

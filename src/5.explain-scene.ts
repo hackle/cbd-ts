@@ -45,3 +45,45 @@ export function explain(scene: Scene): string {
 
     return null;
 }
+
+/*
+    One can use tester-doer or maps here
+*/
+type DescriptionMaker = { action: Action, place: Place, description: (scene: Scene) => string }
+const descriptionMakers: DescriptionMaker[] = [ 
+  {
+      action: 'disagreement',
+      place: 'office',
+      description: (scene: Scene) => `${scene.person1} addresses ${scene.person2}: I beg to differ`
+  },      
+  {
+      action: 'disagreement',
+      place: 'home',
+      description: (scene: Scene) => `${scene.person1} shouts to ${scene.person2}: I hate you!`
+  },      
+  {
+      action: 'greeting',
+      place: 'office',
+      description: (scene: Scene) => `${scene.person1} shares a firm hand-shake with ${scene.person2}`
+  },      
+  {
+      action: 'greeting',
+      place: 'home',
+      description: (scene: Scene) => `${scene.person1} gives ${scene.person2} a bear hug`
+  },      
+];
+
+export function explain1(scene: Scene): string {
+    return descriptionMakers
+            .find(m => m.action === scene.action && m.place === scene.place)
+            .description(scene);
+
+    /*
+     it's more readable but less writeable, 
+     but try this out below, and challenge is to support both ways of indexing!
+     
+     return descriptionMakers[scene.action][scene.place](scene);
+     // or,
+     return descriptionMakers[scene.place][scene.action](scene);
+    */
+}
