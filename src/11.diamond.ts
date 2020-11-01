@@ -1,12 +1,12 @@
 /*
     given any letter, build a diamond shape.
     For example, with D
-    ---D---
-    --C-C--
-    -B---B-
-    A-----A
-    -B---B-
-    --C-C--
+    ---A---
+    --B-B--
+    -C---C-
+    D-----D
+    -C---C-
+    --B-B--
     ---A---
 */
 
@@ -15,16 +15,17 @@ import _ from 'lodash';
 const codeA = 'A'.charCodeAt(0);
 export function diamond(letter: string): string {
     const endCode = letter.charCodeAt(0);
-    const half = _.range(codeA, )
+    // end is exclusive
+    const half = _.range(codeA, endCode + 1)
             .map(code => makeLine(code, endCode));
 
-    return half.concat(half.slice(1).reverse()).join('\n');
+    return half.concat(half.slice(0, -1).reverse()).join('\n');
 }
 
 function makeLine(code: number, end: number): string {
-    const half = _.range(codeA, end);
+    const half = _.range(codeA, end + 1);
     const init = half.slice(1);
-    return half.concat(init.reverse())
-                .map(c => c === code ? String.fromCharCode(c) : ' ')
+    return init.reverse().concat(half)
+                .map(c => c === code ? String.fromCharCode(c) : '-')
                 .join('');
 }

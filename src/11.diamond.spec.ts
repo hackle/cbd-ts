@@ -5,12 +5,12 @@ describe('diamond', () => {
         {
             letter: 'D',
             expected: 
-`---D---
---C-C--
--B---B-
-A-----A
--B---B-
---C-C--
+`---A---
+--B-B--
+-C---C-
+D-----D
+-C---C-
+--B-B--
 ---A---`
         }
     ].forEach(testcase => it(testcase.letter, () => {
