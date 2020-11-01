@@ -1,14 +1,15 @@
+import _ from 'lodash';
 import { exit } from 'process';
-import { createInterface } from 'readline';
+import Prompt from 'prompt-sync';
 
 /*
     This is imperative - see if you can express it more succinctly
 */
-async function getValidPassword() {
+export function getValidPassword() {
     let password: string;
     let isValid = false;
     do {
-        password = await question('Please input a password: ');
+        password = Prompt()('Please input a password: ');
         isValid = password.length > 8 && /[a-z]/i.test(password) && /[0-9]/.test(password);
         console.log(`"${password}" is valid? ${isValid}`);
     } while (!isValid);
@@ -16,17 +17,21 @@ async function getValidPassword() {
     return password;
 }
 
-let reader = createInterface(process.stdin, process.stdout);
-function question(q: string): Promise<string> {
-    return new Promise(resolve => {
-        reader.question(q, resolve);
-    });
+function getValidPassword1(): string {
+    return _(_.range(0, 100))
+            .map(_ => getOnce())
+            .find(p => p != null);
 }
 
-getValidPassword().then(p => {
-    console.log(`Password is "${p}"`);
+function getOnce(): string {
+    const password = Prompt()('Please input a password: ');
+    const isValid = password.length > 8 && /[a-z]/i.test(password) && /[0-9]/.test(password);
+    console.log(`"${password}" is valid? ${isValid}`);
+    return isValid ? password : null;
+}
 
-    exit(0);
-});
+console.log(`Password is "${getValidPassword1()}"`);
+exit(0);
 
-// to execute, run ts-node 10.valid-password.ts
+// may need to install ts-node globally first
+// to execute, run: ts-node 10.valid-password.ts

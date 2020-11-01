@@ -15,6 +15,7 @@
     "@types/jest": "^26.0.15",
     "@types/lodash": "4.14.164",
     "@types/node": "14.14.3",
+    "@types/prompt-sync": "4.1.0",
     "babel-jest": "^26.6.1",
     "jest": "26.6.1",
     "ts-node": "9.0.0",
@@ -22,6 +23,7 @@
   },
   "dependencies": {
     "lodash": "4.17.20",
+    "prompt-sync": "4.2.0",
     "tslib": "2.0.3"
   }
 }
