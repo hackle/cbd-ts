@@ -20,7 +20,7 @@ class DecisionMaker {
 
     // check all roles approve of the purchase
     approvedBy(...roles: Role[]): boolean {
-        return true;
+        return !roles.some(r => this.purchase[r] !== 'approved');
     }
 
     decide(): PurchaseApprovals {
